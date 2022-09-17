@@ -25,16 +25,11 @@ function onDataFromPython(event) {
   Plotly.newPlot(myPlot, spec);
 
   // on event, return data to Python
-  myPlot.on("plotly_click", (data) => {
-    var x, y;
-    for (var i = 0; i < data.points.length; i++) {
-      x = data.points[i].x;
-      y = data.points[i].y;
-    }
-    Streamlit.setComponentValue({
-      x: x,
-      y: y,
+  myPlot.on("plotly_click", (eventData) => {
+    const clickedPoints = eventData.points.map((p) => {
+      return { x: p.x, y: p.y };
     });
+    Streamlit.setComponentValue(clickedPoints);
   });
 
   // Render iframe with the plot height

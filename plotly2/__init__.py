@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 
 from plotly.graph_objects import Figure
 
-_USE_WEB_DEV_SERVER = False
+_USE_WEB_DEV_SERVER = True
 
 if _USE_WEB_DEV_SERVER:
     _component_func = components.declare_component(
