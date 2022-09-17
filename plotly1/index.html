@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+</head>
+
+<body>
+    <!-- Set up your HTML here -->
+    <div id="plot"></div>
+
+    <script>
+        function sendMessageToStreamlitClient(type, data) {
+            var outData = Object.assign({
+                isStreamlitMessage: true,
+                type: type,
+            }, data);
+            window.parent.postMessage(outData, "*");
+        }
+
+        function init() {
+            sendMessageToStreamlitClient("streamlit:componentReady", { apiVersion: 1 });
+        }
+
+        function setFrameHeight(height) {
+            sendMessageToStreamlitClient("streamlit:setFrameHeight", { height: height });
+        }
+
+        function sendDataToPython(data) {
+            sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+        }
+
+
+        function onDataFromPython(event) {
+            if (event.data.type !== "streamlit:render") return;
+
+            var myPlot = document.getElementById('plot')
+
+            spec = JSON.parse(event.data.args.spec)
+            console.log(spec)
+
+            /*Plotly.newPlot(plot, [{
+                x: [1, 2, 3, 4, 5],
+                y: [1, 2, 4, 8, 16]
+            }],
+                { margin: { t: 0 } }
+            );*/
+            Plotly.newPlot(myPlot, spec);
+            
+            myPlot.on("plotly_click", (data) => {
+                var pts = '';
+                for(var i=0; i < data.points.length; i++){
+                    pts = 'x = '+data.points[i].x +'\ny = '+
+                        data.points[i].y.toPrecision(4) + '\n\n';
+                }
+                sendDataToPython({
+                    value: pts,
+                    dataType: "json",
+                });
+            })
+
+            setFrameHeight(document.documentElement.clientHeight);
+        }
+
+        // Hook things up!
+        window.addEventListener("message", onDataFromPython);
+        init();
+    </script>
+</body>
+
+</html>
