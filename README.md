@@ -21,9 +21,9 @@ streamlit run streamlit_app.py
 
 In `streamlit_app.py`, uncomment `from plotly2 import plotly_events` and comment the other imports.
 
-The source HTML/JS files reside in `plotly2/frontend/src` and need to be served by Parcel.
-
 ### Method 1 - serve HTML/CSS through Parcel
+
+The source HTML/JS files reside in `plotly2/frontend/src` and need to be served with all required dependencies by Parcel.
 
 In a terminal:
 
@@ -41,6 +41,8 @@ streamlit run streamlit_app.py
 ```
 
 ### Method 2 - bundle HTML/CSS first with Parcel
+
+The source HTML/JS files reside in `plotly2/frontend/src` and need to be bundled with all required dependencies by Parcel.
 
 In a terminal:
 
@@ -63,9 +65,9 @@ streamlit run streamlit_app.py
 
 In `streamlit_app.py`, uncomment `from plotly3 import plotly_events` and comment the other imports.
 
-The source HTML/JS files reside in `plotly3/frontend/src` and need to be served by Webpack.
+### Method 1 - serve HTML/CSS through Webpack
 
-### Method 1 - serve HTML/CSS through Parcel
+The source HTML/JS files reside in `plotly3/frontend/src` and need to be served with all required dependencies by Webpack.
 
 In a terminal:
 
@@ -83,6 +85,8 @@ streamlit run streamlit_app.py
 ```
 
 ### Method 2 - bundle HTML/CSS first with Parcel
+
+The source HTML/JS files reside in `plotly3/frontend/src` and need to be bundled with all required dependencies by Webpack.
 
 In a terminal:
 
