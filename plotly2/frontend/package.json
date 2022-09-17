@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "clean": "rm -rf build/ && rm -rf dist/",
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --dist-dir ./build --public-url ./"
+    "build": "rm -rf build/ && parcel build src/index.html --dist-dir ./build --public-url ./"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "buffer": "^6.0.3",
     "parcel": "^2.7.0"

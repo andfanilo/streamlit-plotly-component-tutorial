@@ -11,7 +11,9 @@
 function onDataFromPython(event) {
   var myPlot = document.getElementById("plot");
 
-  spec = JSON.parse(event.data.args.spec);
+  const data = event.detail;
+
+  spec = JSON.parse(data.args.spec);
   console.log(spec);
 
   /*Plotly.newPlot(plot, [{

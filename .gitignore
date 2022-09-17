@@ -1,6 +1,11 @@
+# Python things
 __pycache__
 
+# JS misc
 node_modules
+.parcel-cache
 build/
+dist/
 
+# IDE stuff
 .vscode
