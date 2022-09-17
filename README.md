@@ -1,5 +1,7 @@
 # Build your first Streamlit Component - Plotly clickable plot
 
+![](./demo.gif)
+
 Code sample for the Youtube tutorial.
 
 ## Prerequisites
