@@ -4,13 +4,15 @@ import {
   Streamlit,
   ComponentProps,
 } from "streamlit-component-lib"
+
+import * as Plotly from "plotly.js"
 import Plot from "react-plotly.js"
 
 const PlotlyEvents = ({ args }: ComponentProps) => {
   useEffect(() => Streamlit.setFrameHeight())
 
-  const handleClick = (eventData: any) => {
-    const clickedPoints = eventData.points.map((p: any) => {
+  const handleClick = (eventData: Plotly.PlotMouseEvent) => {
+    const clickedPoints = eventData.points.map((p: Plotly.PlotDatum) => {
       return { x: p.x, y: p.y }
     })
     Streamlit.setComponentValue(clickedPoints)
